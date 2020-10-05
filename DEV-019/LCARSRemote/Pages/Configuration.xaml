@@ -1,0 +1,242 @@
+﻿<Page
+    x:Class="LCARSRemote.Pages.Configuration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LCARSRemote.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grd_LeftPane.ColumnDefinitions[3].Width" Value="25" />
+                        <Setter Target="grd_LeftPane.RowDefinitions[0].Height" Value="25" />
+                        <Setter Target="grd_RightPane.ColumnDefinitions[0].Width" Value="25" />
+                        <Setter Target="grd_RightPane.RowDefinitions[0].Height" Value="25" />
+                        <Setter Target="grd_RightPane.RowDefinitions[4].Height" Value="25" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--nothing-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <RelativePanel>
+            <Grid x:Name="grd_LeftPane" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource CorneredButton}" >
+                        </Style>
+                    </StackPanel.Resources>
+                    <Border Width="40" Background="{StaticResource lcars-peach}" CornerRadius="25,0,0,25" />
+                    <Button x:Name="btn_RoomAdd" Content="ADD" Tapped="btn_RoomAdd_Tapped"  Background="{StaticResource lcars-grayBlue}" />
+                    <Button x:Name="btn_RoomRem" Content="REMOVE" Tapped="btn_RoomRem_Tapped" Background="{StaticResource lcars-lightRed}" />
+                </StackPanel>
+                <Border Grid.Column="2" Grid.Row="0" Background="{StaticResource lcars-orange}" />
+                <Border Grid.Column="3" Grid.Row="0" Background="{StaticResource lcars-orange}" CornerRadius="0,30,0,0" />
+                <Border Grid.Row="1" Grid.Column="2" Width="Auto" Height="10" CornerRadius="0,0,0,0"
+                        Background="{StaticResource lcars-orange}" />
+                <Border Grid.Row="1" Grid.Column="2" Width="Auto" Height="10" CornerRadius="0,10,0,0"
+                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+                <ListView x:Name="lv_Rooms" Grid.Column="0" Grid.Row="2" Tapped="lv_Rooms_Tapped" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Path=Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Border Grid.Column="3" Grid.Row="1" Background="{StaticResource lcars-orange}" />
+                <Border Grid.Column="3" Grid.Row="2" Background="{StaticResource lcars-orange}" />
+            </Grid>
+            <Grid x:Name="grd_RightPane" RelativePanel.RightOf="grd_LeftPane" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="{StaticResource lcars-blue}"  CornerRadius="25,0,0,0" />
+                <Border Grid.Column="3" Grid.Row="0" Background="{StaticResource lcars-peach}" CornerRadius="0,25,25,0" Margin="10,0,0,0"/>
+                <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource lcars-blue}" />
+                <Border Grid.Column="1" Grid.Row="1" Background="{ThemeResource AppBarBackgroundThemeBrush}" CornerRadius="10,0,0,0" />
+                <Border Grid.Column="0" Grid.Row="2" Background="{StaticResource lcars-blue}" />
+                <!--Content Area Right Pane-->
+                <RelativePanel Grid.Column="2" Grid.Row="2">
+                    <Grid x:Name="grd_RoomDefinitionFrame" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="{StaticResource lcars-purple}" CornerRadius="10,0,0,0" />
+                        <Border Grid.Column="0" Grid.Row="1" Background="{StaticResource lcars-purple}" />
+                        <Border Grid.Column="1" Grid.Row="1" Background="{StaticResource lcars-purple}" />
+                        <Border Grid.Column="1" Grid.Row="1" Background="{ThemeResource AppBarBackgroundThemeBrush}" CornerRadius="5,0,0,0" />
+                        <Border Grid.Column="0" Grid.Row="2" Background="{StaticResource lcars-purple}" />
+                        <Grid Grid.Column="2" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="ROOM NAME" FontFamily="{StaticResource MainFont}" FontSize="22"/>
+                            <TextBox x:Name="tbx_RoomName" Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBox}" />
+                            <TextBlock Text="I2C ADRESS" Grid.Column="0" Grid.Row="2" FontFamily="{StaticResource MainFont}" FontSize="22"/>
+                            <TextBox x:Name="tbx_I2CAdress" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBox}" />
+                        </Grid>
+                        <Border Grid.Column="0" Grid.Row="3" Background="{StaticResource lcars-purple}" />
+                    </Grid>
+
+                    <Grid x:Name="grd_DeviceAddRem" RelativePanel.Below="grd_RoomDefinitionFrame" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="{StaticResource lcars-orange}" CornerRadius="0,10,0,0" />
+                        <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource lcars-orange}" />
+                        <Border Grid.Column="1" Grid.Row="1" Background="{ThemeResource AppBarBackgroundThemeBrush}" CornerRadius="0,5,0,0"/>
+                        <Border Grid.Column="2" Grid.Row="2" Background="{StaticResource lcars-orange}" />
+                        <ListView x:Name="lv_Devices" Tapped="lv_Devices_Tapped" Grid.Column="0" Grid.Row="2">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Path=Name}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                    <Grid x:Name="grd_DeviceConfigurationFrame" RelativePanel.RightOf="grd_DeviceAddRem" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="grd_RoomDefinitionFrame" RelativePanel.AlignRightWithPanel="True" Margin="10,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="{StaticResource lcars-pink}" CornerRadius="10,0,0,0" />
+                        <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource lcars-pink}" />
+                        <Border Grid.Column="1" Grid.Row="1" Background="{ThemeResource AppBarBackgroundThemeBrush}" CornerRadius="5,0,0,0" />
+                        <Border Grid.Column="0" Grid.Row="2" Background="{StaticResource lcars-pink}" />
+                        <Grid x:Name="grd_DeviceDefinition" Grid.Column="2" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0"  Text="Device Type" FontFamily="{StaticResource MainFont}" FontSize="22" />
+                            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource RoundedButton}">
+                                        <Setter Property="MinHeight" Value="20" />
+                                        <Setter Property="MinWidth" Value="40" />
+                                        <Setter Property="Height" Value="40" />
+                                        <Setter Property="Width" Value="Auto" />
+                                        <Setter Property="FontSize" Value="22" />
+                                        <Setter Property="Margin" Value="10,0,0,0" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Button x:Name="btn_DeviceType_Device" Tapped="btn_DeviceType_Device_Tapped" Content="Device" Background="{StaticResource lcars-blue}" />
+                                <Button x:Name="btn_DeviceType_WindowShutter" Tapped="btn_DeviceType_WindowShutter_Tapped" Content="Window Shutter" Background="{StaticResource lcars-tan}" />
+                                <Button x:Name="btn_DeviceType_Sensor" Tapped="btn_DeviceType_Sensor_Tapped" Content="Alert Sensor" Background="{StaticResource lcars-tan}" />
+                            </StackPanel>
+                            <TextBlock Grid.Column="0" Grid.Row="2"  Text="Device Name" FontFamily="{StaticResource MainFont}" FontSize="22" />
+                            <TextBox x:Name="tbx_DeviceName"  Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBox}" />
+                            <TextBlock Grid.Column="0" Grid.Row="4"  Text="Device Pin" FontFamily="{StaticResource MainFont}"  FontSize="22"/>
+                            <FlipView x:Name="fv_DevicePin" Grid.Column="1" Grid.Row="4" Width="80" Height="25" FontFamily="{StaticResource MainFont}" FontSize="22" HorizontalAlignment="Center">
+                            </FlipView>
+                            <TextBlock Grid.Column="0" Grid.Row="6"  Text="Device Pin Sec" FontFamily="{StaticResource MainFont}"  FontSize="22"/>
+                            <FlipView x:Name="fv_DevicePinSec" Grid.Column="1" Grid.Row="6" Width="80" Height="25" FontFamily="{StaticResource MainFont}" FontSize="22" HorizontalAlignment="Center">
+                            </FlipView>
+                            <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Horizontal">
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource CorneredButton}" />
+                                </StackPanel.Resources>
+                                <Button x:Name="btn_AddDevice" Content="ADD" Tapped="btn_AddDevice_Tapped" Background="{StaticResource lcars-grayBlue}" />
+                                <Button x:Name="btn_RemoveDevice" Content="REMOVE" Tapped="btn_RemoveDevice_Tapped" Background="{StaticResource lcars-lightRed}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </RelativePanel>
+                <!--End Content Area Right Pane-->
+                <Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Background="{StaticResource lcars-blue}" />
+                <Border Grid.Column="1" Grid.Row="3" Background="{ThemeResource AppBarBackgroundThemeBrush}" CornerRadius="0,0,0,10" />
+                <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Background="{StaticResource lcars-blue}"  CornerRadius="0,0,0,25" />
+                <RelativePanel Grid.Column="2" Grid.Row="4">
+                    <Border Height="50" Background="{StaticResource lcars-blue}" RelativePanel.LeftOf="btn_Save" RelativePanel.AlignLeftWithPanel="True" />
+                    <Button x:Name="btn_Save" Content="SAVE" Tapped="btn_Save_Tapped" Style="{StaticResource CorneredButton}" Background="{StaticResource lcars-salmon}"  Height="50" RelativePanel.AlignRightWithPanel="True" />
+                </RelativePanel>
+                <Border Grid.Column="3" Grid.Row="4" Background="{StaticResource lcars-peach}" CornerRadius="0,25,25,0" Margin="10,0,0,0"/>
+            </Grid>
+        </RelativePanel>
+    </Grid>
+</Page>

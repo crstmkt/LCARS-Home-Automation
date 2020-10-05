@@ -1,0 +1,125 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CSRedAlert"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:Media="using:Microsoft.Xaml.Interactions.Media"
+    xmlns:r="clr-namespace:System;assembly=mscorlib"
+    xmlns:Mocks="using:Mocks"
+    x:Class="CSRedAlert.MainPage"
+    mc:Ignorable="d" d:DesignWidth="1000"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+
+    <!-- Temp Container -->
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="65"/>
+            <RowDefinition Height="Auto" MinHeight="65"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="125" Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Accents / Colors : Upper stage area elbows -->
+        <Border Grid.Row="1" Grid.ColumnSpan="2" CornerRadius="0,0,0,50" Margin="10,0,0,10"
+			Background="{StaticResource lcars-orange}"/>
+        <Border Grid.Row="1" Grid.Column="1" Margin="75,0,50,10"
+			Background="{StaticResource lcars-salmon}"
+			BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="10,0,10,0"/>
+        <Border Grid.Row="1" Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+			Height="30" CornerRadius="0,0,0,50"
+			VerticalAlignment="Top"/>
+
+            <!--<TextBlock x:Name="tb_MachineName"/>-->
+            <TextBlock x:Name="tb_AppName" Grid.Row="0" Grid.Column="2" />
+            
+            <TextBlock x:Name="tb_VersionInfo" Grid.Row="1" Grid.Column="2" />
+
+        <!-- Upper MinHeight="40" -->
+        <Button  x:Name="btn_Manual"
+			Content="Manual" 
+			HorizontalContentAlignment="Left" VerticalAlignment="Top" Padding="25,0,0,0"
+			Tapped="btn_Manual_Tapped"
+			Background="{StaticResource lcars-blue}"
+			Style="{StaticResource LeftNavButtonStyle}"
+                    />
+
+
+        <!-- Left Nav Region -->
+        <!--<ContentControl x:Name="Alerter" Grid.RowSpan="4" Grid.ColumnSpan="2"                    
+                        Style="{StaticResource RedAlert}" Tapped="Alerter_Ignore"/>-->
+
+
+        <!-- Accents / Colors : Lower stage area elbows -->
+        <Border x:Name="TopBar2" Grid.Row="2" Grid.ColumnSpan="2" 
+                Background="{StaticResource lcars-orange}"
+                CornerRadius="50,0,0,0" Margin="10,10,0,0"/>
+        <Border Grid.Row="2" Grid.Column="1" Margin="75,10,50,0"
+			Background="{StaticResource lcars-peach}"
+			BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="10,0,10,0"/>
+        <Border Grid.Row="2" Grid.Column="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+			Height="30" CornerRadius="50,0,0,0"
+			VerticalAlignment="Bottom"/>
+        <Border Grid.Row="3" Background="{StaticResource lcars-orange}" Margin="10,0,0,0"/>
+
+        <!-- Lower -->
+        <StackPanel Grid.Row="3">
+            <StackPanel.Resources>
+                <!-- Style Inheritance for left bar buttons. -->
+                <Style TargetType="Button" BasedOn="{StaticResource LeftNavButtonStyle}"/>
+            </StackPanel.Resources>
+
+            <!-- Alert Button -->
+            <Button x:Name="btn_Dashboard"
+				Tapped="btn_Dashboard_Tapped" Content="Dashboard" 
+				Background="{StaticResource lcars-tan}"/>
+
+            <!-- Rooms Button -->
+            <Button x:Name="btn_Rooms" Background="{StaticResource lcars-grayBlue}"
+				Tapped="btn_Rooms_Tapped" Content="Rooms"/>
+
+            <!--Logs Button-->
+            <Button x:Name="btn_Logs" Background="{StaticResource lcars-salmon}"
+				Tapped="btn_Logs_Tapped" Content="Logs"/>
+
+            <!-- Another Button -->
+            <Button x:Name="btn_Alert" Content="Alert" Background="{StaticResource lcars-red}"
+				Tapped="btn_Alert_Tapped"/>
+            <Button x:Name="btn_Settings"
+				Tapped="btn_Settings_Tapped" Content="Settings" Background="{StaticResource lcars-peach}" />
+            <Button x:Name="btn_Config" 
+				Tapped="btn_Config_Tapped" Content="Configuration" Background="{StaticResource lcars-tan}" />
+            <Button x:Name="btn_Standby"
+				Tapped="btn_Standby_Tapped" Content="Standby" Background="{StaticResource lcars-white}" />
+        </StackPanel>
+
+        <!--Content Area-->
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            
+            <Frame x:Name="frm_ContentFrame" BorderThickness="0" Padding="20, 0, 0, 0"/>
+        </StackPanel>
+
+
+
+
+        <!--<StackPanel>
+            <ContentControl Style="{StaticResource RedAlert}" Foreground="Green"/>
+            <ContentControl Style="{StaticResource RedAlert}" Foreground="Yellow"/>
+        </StackPanel>-->
+
+        <MediaElement x:Name="AlertPlayer" Source="Assets/sounds/001.wav" AutoPlay="False" IsLooping="True" Visibility="Collapsed" Volume="100"/>
+        <ContentControl x:Name="Alerter" Grid.RowSpan="4" Grid.ColumnSpan="2"                    
+                        Style="{StaticResource RedAlert}" Tapped="Alerter_Ignore"/>
+
+    </Grid>
+
+
+</Page>
+ 

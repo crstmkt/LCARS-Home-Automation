@@ -1,0 +1,26 @@
+﻿    <Page
+    x:Class="CSRedAlert.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CSRedAlert"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" FontFamily="ms-appx:///Assets/fonts/LCARSGTJ3.ttf#LCARSGTJ3" FontSize="24">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <Button Style="{StaticResource lcars-button}" Background="{StaticResource lcars-orange}">LCARS</Button>
+            <Ellipse x:Name="LED" Fill="LightGray" Stroke="White" Width="100" Height="100" Margin="10"/>
+            <TextBlock x:Name="DelayText" Text="500ms" Margin="10" TextAlignment="Center" FontSize="26.667" />
+            <TextBlock x:Name="GpioStatus" Text="Waiting to initialize GPIO..." Margin="10,50,10,10" TextAlignment="Center" FontSize="26.667" />
+            <Button x:Name="btn_Test" Style="{StaticResource lcars-button-tall}" Background="{StaticResource lcars-peach}" Click="btn_Test_Click">RED ALERT</Button>
+            <MediaElement x:Name="AlertPlayer" Source="Assets/sounds/001.wav" AutoPlay="False" Visibility="Collapsed" Volume="100"></MediaElement>
+            
+            <!--This Video animation is slow, jerky and somehow crap. there has to be a better solution-->
+            <MediaElement x:Name="AlertVideo" Source="Assets/animations/red.avi" AutoPlay="False" Visibility="Collapsed"></MediaElement>
+            
+            <!--<Canvas Style="{StaticResource lcars-elbow}" Background="{StaticResource lcars-orange}"></Canvas>-->           
+            
+        </StackPanel>
+    </Grid>
+</Page>
