@@ -12,3 +12,8 @@ Some Screenshots:
 
 
 ![Dashboard.png](pictures/Dashboard.png)
+![Configuration.png](pictures/Configuration.png)
+![Configuration1.png](pictures/Configuration1.png)
+![Logs.png](pictures/Logs.png)
+![RedAlert.png](pictures/RedAlert.png)
+![Rooms.png](pictures/Rooms.png)
