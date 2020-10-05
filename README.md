@@ -11,3 +11,4 @@ Made the Project public for everyone who may be interested in it. Feel free to f
 Some Screenshots:
 
 
+![Dashboard.png](pictures/Dashboard.png)
