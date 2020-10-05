@@ -1,4 +1,4 @@
-# LCARS-Home-Automation
+# LCARS Home Automation
 Tried to realize some LCARS Style Home Automation using Raspberry Pi and Windows IoT.
 
 Please be aware: Most of the code wont work due to deprecated SDKs or unfinished work.
