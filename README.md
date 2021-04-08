@@ -3,7 +3,7 @@ Tried to realize some LCARS Style Home Automation using Raspberry Pi and Windows
 
 Please be aware: Most of the code wont work due to deprecated SDKs or unfinished work.
 
-The code partly based on this project but was modified by me to fit my needs:
+The code partly based on this project but was modified to fit my needs:
 https://www.hackster.io/AnuragVasanwala/home-automation-using-raspberry-pi-2-and-windows-10-iot-0dcefc
 
 Made the project public for everyone who may be interested in it. Feel free to fork it.
